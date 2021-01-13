@@ -6,14 +6,15 @@
  */
 
 .tabs {
-    position: fixed;
-    top: 48px;
-    z-index: 1;
+    // position: fixed;
+    // top: 48px;
+    // z-index: 1;
     background: #fff;
     height: 35px;
     // margin-left: -24px;
     // width: calc(100% - 256px);
     // width: 100%;
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
 
@@ -55,6 +56,12 @@
     &:first-child {
         &::before {
             display: none;
+        }
+    }
+
+    :global {
+        .ant-dropdown-link {
+            line-height: 30px;
         }
     }
 }

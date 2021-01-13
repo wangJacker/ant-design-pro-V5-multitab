@@ -207,7 +207,7 @@ const Tabs = () => {
 
     return (
         // <div className={styles.tabs} style={{ width: initialState?.collapsed ? "calc(100vw - 41px)" : "calc(100vw - 249px)" }}>
-        <div className={styles.tabs} style={{ width: `${tabsWidth}px`, }}>
+        <div className={styles.tabs} id="contentContainer">
             {tabList.length > 0 && <SortableList onSortEnd={onSortEnd} axis={'x'} distance={1} />}
             <div className={`${styles.tabLeftMenu}  ${tabList.length >= showTabs && styles.boxShadow}`}>
                 {

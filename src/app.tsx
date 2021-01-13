@@ -3,6 +3,7 @@ import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import { notification } from 'antd';
 import { history, RequestConfig, RunTimeLayoutConfig, AliveScope } from 'umi';
+import HeaderRender from '@/components/HeaderRender'
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { ResponseError } from 'umi-request';
@@ -53,6 +54,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         rightContentRender: () => <RightContent />,
         disableContentMargin: true,
         footerRender: () => <Footer />,
+        headerRender: () => <HeaderRender />,
+        headerHeight: 93,
         onPageChange: () => {
             const { location } = history;
             // 如果没有登录，重定向到 login
@@ -80,18 +83,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         //     return menuArr
         // },
         childrenRender: (children) => {
-            const { location } = history;
             return (
                 <AliveScope>
-                    {
-                        location.pathname !== '/user/login' && (
-                            <Tabs />
-                        )
-                    }
-
-                    <div style={{ paddingTop: "40px" }} id="contentContainer">
-                        {children}
-                    </div>
+                    {children}
                 </AliveScope>
             )
         },
