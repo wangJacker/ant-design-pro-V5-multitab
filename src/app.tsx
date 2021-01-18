@@ -82,13 +82,13 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         //     })
         //     return menuArr
         // },
-        childrenRender: (children) => {
-            return (
-                <AliveScope>
-                    {children}
-                </AliveScope>
-            )
-        },
+        // childrenRender: (children) => {
+        //     return (
+        //         <AliveScope>
+        //             {children}
+        //         </AliveScope>
+        //     )
+        // },
         // 自定义 403 页面
         // unAccessible: <div>unAccessible</div>,
         ...initialState?.settings,
@@ -137,6 +137,11 @@ const errorHandler = (error: ResponseError) => {
     }
     throw error;
 };
+
+export function rootContainer(container: HTMLElement) {
+    return React.createElement(AliveScope, null, container)
+}
+
 
 export const request: RequestConfig = {
     errorHandler,
