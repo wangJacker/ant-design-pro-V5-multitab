@@ -1,15 +1,19 @@
 import React from 'react';
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
-import { notification } from 'antd';
-import { history, RequestConfig, RunTimeLayoutConfig, AliveScope } from 'umi';
+import { notification, ConfigProvider } from 'antd';
+import { history, RequestConfig, RunTimeLayoutConfig, AliveScope, fixContext } from 'umi';
+import { RouteContext } from '@ant-design/pro-layout'
 import HeaderRender from '@/components/HeaderRender'
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { ResponseError } from 'umi-request';
-import Tabs from '@/components/Tabs'
 import { queryCurrent } from './services/user';
 import defaultSettings from '../config/defaultSettings';
+
+// 修复Context 的破坏性影响 对PageContainer组件的影响 详见：https://github.com/alitajs/umi-plugin-keep-alive/issues/30
+fixContext(RouteContext)
+fixContext(ConfigProvider.ConfigContext)
 /**
  * 获取用户信息比较慢的时候会展示一个 loading
  */
