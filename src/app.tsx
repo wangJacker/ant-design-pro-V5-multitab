@@ -142,8 +142,21 @@ const errorHandler = (error: ResponseError) => {
     throw error;
 };
 
-export function rootContainer(container: HTMLElement) {
-    return React.createElement(AliveScope, null, container)
+
+//修復 umi 使用rootContainer 导致菜单权限失效的bug 参考：https://github.com/ant-design/ant-design-pro/issues/7989
+const PageWraper = ({ children, routes }: { children: any, routes: any }) => {
+    return (
+        <AliveScope >
+            {React.cloneElement(children, {
+                ...children.props,
+                routes,
+            })}
+        </AliveScope>
+    );
+};
+
+export function rootContainer(container: JSX.Element) {
+    return React.createElement(PageWraper, null, container);
 }
 
 
